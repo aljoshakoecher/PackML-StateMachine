@@ -1,4 +1,4 @@
-package tests.transitioning;
+package transitioning;
 
 import static org.junit.jupiter.api.Assertions.*;
 
