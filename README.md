@@ -33,7 +33,7 @@ stateMachine.stop();
 // see figure for more transitions
 ```
 
-You can also create a state machine with a differnt initial state than 'Idle'. This can be done with the `withInitialState(State s)`-function of the builder. Simply pass in the state you want to have as the initial state to that function.
+You can also create a state machine with a different initial state than 'Idle'. This can be done with the `withInitialState(State s)`-function of the builder. Simply pass in the state you want to have as the initial state to that function.
 
 ```java
 stateMachine = new StateMachineBuilder().withInitialState(new StoppedState()).build();
@@ -85,9 +85,9 @@ It's very easy to use this library in your own projects. If you're working with 
 
 ```xml
 <dependency>
-    <groupId>aut.de.hsu-hh.isa88</groupId>
-    <artifactId>state-machine</artifactId>
-    <version>0.0.1</version>
+   <groupId>de.hsu-hh.aut</groupId>
+	<artifactId>isa88-state-machine</artifactId>
+	<version>1.0.0</version>
 </dependency>
 ```
 
