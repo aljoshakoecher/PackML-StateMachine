@@ -34,14 +34,6 @@ public class SuspendedState extends StoppableState {
 		// Reset cannot be fired from Suspended -> Do nothing except maybe giving a warning
 	}
 	@Override
-	public void stop(StateMachine stateMachine) {
-		// Stop cannot be fired from Suspended -> Do nothing except maybe giving a warning
-	}
-	@Override
-	public void abort(StateMachine stateMachine) {
-		// Abort cannot be fired from Suspended -> Do nothing except maybe giving a warning
-	}
-	@Override
 	public void clear(StateMachine stateMachine) {
 		// Clear cannot be fired from Suspended -> Do nothing except maybe giving a warning
 	}
