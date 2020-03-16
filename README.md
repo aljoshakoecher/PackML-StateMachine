@@ -40,7 +40,7 @@ stateMachine = new StateMachineBuilder().withInitialState(new StoppedState()).bu
 ```
 
 ### Creating a real state machine that executes actions
-The state machine of ISA88 can execute actions in all active states. You can create arbitrary actions and pass them to the state machine to let the state machine execute these actions in the correct states. To implement your own actions, simply implement the interface `IStateAction` as shown here:
+The state machine of ISA88 allows for executing actions in all active states. You can create arbitrary actions and pass them to the state machine to let the state machine execute these actions in the correct states. To implement your own actions, simply implement the interface `IStateAction` as shown here:
 
 ```Java
 import states.IStateAction;
