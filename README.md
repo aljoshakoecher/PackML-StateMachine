@@ -9,7 +9,7 @@ As you can see in the figure, the state machine defines states and transitions t
 * When you fire a 'stop'-transition while being in 'Stopped' state, nothing happens
 The state machine makes sure that no invalid transitions can be fired.
 
-##Documentation
+## Documentation
 ### Simple state machine without actions
 To use the simplest version of the state machine in your code, you simply obtain an instance from the state machine builder. This state machine will then be in 'Idle' state and you can invoke the transitions shown in the figure above. Note that this simple state machine can just be used to simulate the state machine behavior.
 
@@ -97,3 +97,6 @@ I'm currently working on publishing releases to the Sonatype Maven repo. Coming 
 ### Building from source
 This project is built with Maven. You can simply build this library from source if you have Maven installed. Simply clone or download this repository and run
 run mvn clean install from the project root.
+
+## Disclaimer
+Please note that the figure above and all definitions of states and transitions have been taken from the [OMAC PackML Implementation Guide](http://omac.org/wp-content/uploads/2016/11/PackML_Unit_Machine_Implementation_Guide-V1-00.pdf) for ISA 88. 
