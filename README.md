@@ -81,22 +81,33 @@ Work in progress, coming soon
 
 
 ## Usage
-It's very easy to use this library in your own projects. If you're working with Maven, simply add this dependency to the `<dependencies>` in you pom.xml.
+With Maven, it's very easy to use this library in your own projects. Releases are published to the Maven Central Repo, snapshot version can be obtained from Sonatype.
+
+### Releases
+Releases can be found on the Maven Central repository. Just add this dependency to your pom.xml:
 
 ```xml
 <dependency>
-   <groupId>de.hsu-hh.aut</groupId>
+	<groupId>com.github.aljoshakoecher</groupId>
 	<artifactId>isa88-state-machine</artifactId>
 	<version>1.0.0</version>
 </dependency>
 ```
 
-### Releases
-I'm currently working on publishing releases to the Sonatype Maven repo. Coming soon..
+### Snapshots
+Make sure to add the Sonatype repo to your POM if you want to grab a snapshot version:
+
+```
+<repository>
+    <id>oss-sonatype</id>
+    <name>oss-sonatype</name>
+    <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+</repository>
+```
 
 ### Building from source
-This project is built with Maven. You can simply build this library from source if you have Maven installed. Simply clone or download this repository and run
-run `mvn clean install` from the project root.
+This project is built with Maven. You can simply build this library from source if you have Maven installed. Clone or download this repository and run
+`mvn clean install` from the project root.
 
 ## Disclaimer
 Please note that the figure above and all definitions of states and transitions have been taken from the [OMAC PackML Implementation Guide](http://omac.org/wp-content/uploads/2016/11/PackML_Unit_Machine_Implementation_Guide-V1-00.pdf) for ISA 88. 
