@@ -90,7 +90,7 @@ public class StateMachine {
 
 	/**
 	 * Sets the current state of the StateMachine
-	 * @param newState The new state that will be set as the current state
+	 * @param state The new state that will be set as the current state
 	 */
 	protected void setState(State state) {
 		this.currentState = state;
@@ -98,7 +98,7 @@ public class StateMachine {
 	
 	/**
 	 * Sets the current state of the StateMachine and runs this state's action
-	 * @param newState The new state that will be set as the current state
+	 * @param state The new state that will be set as the current state
 	 */
 	public void setStateAndRunAction(State state) {
 		this.currentState = state;
