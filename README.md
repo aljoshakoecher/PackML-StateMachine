@@ -1,3 +1,5 @@
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.aljoshakoecher/isa88-state-machine.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.aljoshakoecher%22%20AND%20a:%22isa88-state-machine%22)
+
 # Java ISA88-StateMachine
 A Java implementation of the state machine standardized in ISA 88. The state machine guarantees that only transitions that only 'valid' transitions can be executed. Have a look at the following figure which depicts the state machine of ISA 88:
 
@@ -64,17 +66,39 @@ stateMachine = new StateMachineBuilder().withActionInStarting(new ExampleActionI
 ```
 
 You may use one or more of the following functions of the StateMachineBuilder:
-* withActionInStarting(IStateAction action)
-* withActionInExecute(IStateAction action)
-* withActionInCompleting(IStateAction action)
-* withActionInSuspending(IStateAction action)
-* withActionInUnsuspending(IStateAction action)
-* withActionInHolding(IStateAction action)
-* withActionInUnholding(IStateAction action)
-* withActionInAborting(IStateAction action)
-* withActionInClearing(IStateAction action)
-* withActionInStopping(IStateAction action)
-* withActionInResetting(IStateAction action)
+
+#####  withActionInStarting(IStateAction action)
+Sets action to be the action that is going to be executed when the state machine is in 'Starting' state.
+
+##### withActionInExecute(IStateAction action)
+Sets action to be the action that is going to be executed when the state machine is in 'Execute' state.
+
+##### withActionInCompleting(IStateAction action)
+Sets action to be the action that is going to be executed when the state machine is in 'Completing' state.
+
+##### withActionInSuspending(IStateAction action)
+Sets action to be the action that is going to be executed when the state machine is in 'Suspending' state.
+
+##### withActionInUnsuspending(IStateAction action)
+Sets action to be the action that is going to be executed when the state machine is in 'Unsuspending' state.
+
+##### withActionInHolding(IStateAction action)
+Sets action to be the action that is going to be executed when the state machine is in 'Holding' state.
+
+##### withActionInUnholding(IStateAction action)
+Sets action to be the action that is going to be executed when the state machine is in 'Unholding' state.
+
+##### withActionInAborting(IStateAction action)
+Sets action to be the action that is going to be executed when the state machine is in 'Aborting' state.
+
+##### withActionInClearing(IStateAction action)
+Sets action to be the action that is going to be executed when the state machine is in 'Clearing' state.
+
+##### withActionInStopping(IStateAction action)
+Sets action to be the action that is going to be executed when the state machine is in 'Stopping' state.
+
+##### withActionInResetting(IStateAction action)
+Sets action to be the action that is going to be executed when the state machine is in 'Resetting' state.
 
 ### Getting notified on state changes
 Work in progress, coming soon
