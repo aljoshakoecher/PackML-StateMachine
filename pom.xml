@@ -5,7 +5,7 @@
 	<groupId>com.github.aljoshakoecher</groupId>
 	<artifactId>isa88-state-machine</artifactId>
 	<version>1.0.0</version>
-	<packaging>jar</packaging>
+ 	<packaging>bundle</packaging>
 
 	<name>ISA 88 State Machine</name>
 	<description>State Machine according to ISA 88 that can be used to quickly implement a behavior that is consistent with ISA 88</description>
@@ -14,7 +14,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-	
+
 	<developers>
 		<developer>
 			<name>Aljosha Koecher</name>
@@ -57,6 +57,11 @@
 				<configuration>
 					<release>11</release>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
