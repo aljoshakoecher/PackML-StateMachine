@@ -10,9 +10,10 @@ As you can see in the figure, the state machine defines states and transitions t
 * After production of an order has been completed, the state machine will change its current state to 'Complete'. It can only be reset from this state. 
 * When you fire a 'stop'-transition while being in 'Stopped' state, nothing happens
 The state machine makes sure that no invalid transitions can be fired.
+<br>
 
 ## Documentation
-### Simple state machine without actions
+### A simple state machine without actions
 To use the simplest version of the state machine in your code, you simply obtain an instance from the state machine builder. This state machine will then be in 'Idle' state and you can invoke the transitions shown in the figure above. Note that this state machine cannot execute any actions while being in the active states and that it can just be used to simulate the state machine behavior.
 
 ```Java
@@ -41,7 +42,15 @@ You can also create a state machine with a different initial state than 'Idle'. 
 stateMachine = new StateMachineBuilder().withInitialState(new StoppedState()).build();
 ```
 
-### Creating a real state machine that executes actions
+As shown above, you can invoke transitions by calling the corresponing methods (start(), stop(), hold(), ...) on the state machine. Alternatively, you can also use this more dynamic version:
+
+```java
+invokeTransition(TransitionName transitionName)
+```
+This will invoke a transition with the given TransitionName.
+<br>
+
+### A real state machine that executes actions
 The state machine of ISA88 allows for executing actions in all active states. These active states are:
 
 * Starting
@@ -114,12 +123,21 @@ Sets action to be the action that is going to be executed when the state machine
 ##### withActionInResetting(IStateAction action)
 Sets action to be the action that is going to be executed when the state machine is in 'Resetting' state.
 
+<br><br>
+Alternatively, you can also use the more flexible way of adding actions to states:
+
+```java
+withAction(IStateAction action, ActiveStateName stateName)
+```
+You can pass in an action and the name of an active state to add this action to a state.
+
+
 ### Getting notified on state changes
 Work in progress, coming soon
 
 
 ## Usage
-With Maven, it's very easy to use this library in your own projects. Releases are published to the Maven Central Repo, snapshot version can be obtained from Sonatype.
+With Maven, it's very easy to use this library in your own projects. Releases are published to the Maven Central Repo, snapshot version can be obtained from Sonatype. Furthermore, you could also grab the .jar from the releases on this github repository. Note that the jar is built as an OSGi-bundle and can therefore be used in an OSGi environment.
 
 ### Releases
 Releases can be found on the Maven Central repository. Just add this dependency to your pom.xml:
