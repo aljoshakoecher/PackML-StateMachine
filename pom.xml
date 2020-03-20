@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.aljoshakoecher</groupId>
 	<artifactId>isa88-state-machine</artifactId>
-	<version>1.0.0</version>
+	<version>1.1.0</version>
  	<packaging>bundle</packaging>
 
 	<name>ISA 88 State Machine</name>
