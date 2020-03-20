@@ -1,7 +1,7 @@
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.aljoshakoecher/isa88-state-machine.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.aljoshakoecher%22%20AND%20a:%22isa88-state-machine%22)
 
 # Java ISA88-StateMachine
-A Java implementation of the state machine standardized in ISA 88. The state machine guarantees that only transitions that only 'valid' transitions can be executed. Have a look at the following figure which depicts the state machine of ISA 88:
+A Java implementation of the state machine standardized in ISA 88. The state machine guarantees that only 'valid' transitions can be executed. Have a look at the following figure which depicts the state machine of ISA 88:
 
 ![State machine as defined in ISA 88 (figure taken from http://omac.org/wp-content/uploads/2016/11/PackML_Unit_Machine_Implementation_Guide-V1-00.pdf](https://github.com/aljoshakoecher/ISA88-StateMachine/blob/documentation/images/documentation/isa88-state-machine.png?raw=true)
 
@@ -10,10 +10,11 @@ As you can see in the figure, the state machine defines states and transitions t
 * After production of an order has been completed, the state machine will change its current state to 'Complete'. It can only be reset from this state. 
 * When you fire a 'stop'-transition while being in 'Stopped' state, nothing happens
 The state machine makes sure that no invalid transitions can be fired.
+<br>
 
 ## Documentation
-### Simple state machine without actions
-To use the simplest version of the state machine in your code, you simply obtain an instance from the state machine builder. This state machine will then be in 'Idle' state and you can invoke the transitions shown in the figure above. Note that this simple state machine can just be used to simulate the state machine behavior.
+### A simple state machine without actions
+To use the simplest version of the state machine in your code, you simply obtain an instance from the state machine builder. This state machine will then be in 'Idle' state and you can invoke the transitions shown in the figure above. Note that this state machine cannot execute any actions while being in the active states and that it can just be used to simulate the state machine behavior.
 
 ```Java
 // necessary imports
@@ -35,14 +36,36 @@ stateMachine.stop();
 // see figure for more transitions
 ```
 
-You can also create a state machine with a different initial state than 'Idle'. This can be done with the `withInitialState(State s)`-function of the builder. Simply pass in the state you want to have as the initial state to that function.
+You can also create a state machine with a different initial state than 'Idle'. This can be done with the `withInitialState(State s)`-function of the builder. Simply pass in the state you want to have as the initial state to this function. The following example creates a state machine instance that start in the 'Stopped' state:
 
 ```java
 stateMachine = new StateMachineBuilder().withInitialState(new StoppedState()).build();
 ```
 
-### Creating a real state machine that executes actions
-The state machine of ISA88 allows for executing actions in all active states. You can create arbitrary actions and pass them to the state machine to let the state machine execute these actions in the correct states. To implement your own actions, simply implement the interface `IStateAction` as shown here:
+As shown above, you can invoke transitions by calling the corresponing methods (start(), stop(), hold(), ...) on the state machine. Alternatively, you can also use this more dynamic version:
+
+```java
+invokeTransition(TransitionName transitionName)
+```
+This will invoke a transition with the given TransitionName.
+<br>
+
+### A real state machine that executes actions
+The state machine of ISA88 allows for executing actions in all active states. These active states are:
+
+* Starting
+* Execute
+* Holding
+* Unholding
+* Suspending
+* Unsuspending
+* Completing
+* Resetting
+* Stopping
+* Aborting
+* Clearing
+
+You can create arbitrary actions and pass them to the state machine to let the state machine execute these actions in the correct states. To implement your own actions, simply implement the interface `IStateAction` as shown here:
 
 ```Java
 import states.IStateAction;
@@ -100,12 +123,21 @@ Sets action to be the action that is going to be executed when the state machine
 ##### withActionInResetting(IStateAction action)
 Sets action to be the action that is going to be executed when the state machine is in 'Resetting' state.
 
+<br><br>
+Alternatively, you can also use the more flexible way of adding actions to states:
+
+```java
+withAction(IStateAction action, ActiveStateName stateName)
+```
+You can pass in an action and the name of an active state to add this action to a state.
+
+
 ### Getting notified on state changes
 Work in progress, coming soon
 
 
 ## Usage
-With Maven, it's very easy to use this library in your own projects. Releases are published to the Maven Central Repo, snapshot version can be obtained from Sonatype.
+With Maven, it's very easy to use this library in your own projects. Releases are published to the Maven Central Repo, snapshot version can be obtained from Sonatype. Furthermore, you could also grab the .jar from the releases on this github repository. Note that the jar is built as an OSGi-bundle and can therefore be used in an OSGi environment.
 
 ### Releases
 Releases can be found on the Maven Central repository. Just add this dependency to your pom.xml:
@@ -114,7 +146,7 @@ Releases can be found on the Maven Central repository. Just add this dependency 
 <dependency>
 	<groupId>com.github.aljoshakoecher</groupId>
 	<artifactId>isa88-state-machine</artifactId>
-	<version>1.0.0</version>
+	<version>1.1.0</version>
 </dependency>
 ```
 

@@ -1,6 +1,7 @@
 package states.impl;
 
 import statemachine.StateMachine;
+import states.ActiveStateName;
 import states.IStateAction;
 import states.State;
 import states.StoppableState;
@@ -48,7 +49,7 @@ public class HoldingState extends StoppableState {
 
 	@Override
 	public void executeActionAndComplete(StateMachine stateMachine) {
-		IStateAction actionToRun = stateMachine.getStateActionManager().getActionInHolding();
+		IStateAction actionToRun = stateMachine.getStateActionManager().getAction(ActiveStateName.Holding);
 		super.executeAction(actionToRun);
 
 		State nextState = new HeldState();

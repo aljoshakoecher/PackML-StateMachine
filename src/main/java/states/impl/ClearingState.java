@@ -2,6 +2,7 @@ package states.impl;
 
 import statemachine.StateMachine;
 import states.AbortableState;
+import states.ActiveStateName;
 import states.IStateAction;
 
 /**
@@ -52,7 +53,7 @@ public class ClearingState extends AbortableState {
 
 	@Override
 	public void executeActionAndComplete(StateMachine stateMachine) {
-		IStateAction actionToRun = stateMachine.getStateActionManager().getActionInClearing();
+		IStateAction actionToRun = stateMachine.getStateActionManager().getAction(ActiveStateName.Clearing);
 		super.executeAction(actionToRun);
 
 		stateMachine.setStateAndRunAction(new StoppedState());
