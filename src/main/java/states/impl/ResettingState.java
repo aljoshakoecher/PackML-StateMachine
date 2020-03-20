@@ -1,6 +1,7 @@
 package states.impl;
 
 import statemachine.StateMachine;
+import states.ActiveStateName;
 import states.IStateAction;
 import states.StoppableState;
 
@@ -47,7 +48,7 @@ public class ResettingState extends StoppableState {
 
 	@Override
 	public void executeActionAndComplete(StateMachine stateMachine) {
-		IStateAction actionToRun = stateMachine.getStateActionManager().getActionInResetting();
+		IStateAction actionToRun = stateMachine.getStateActionManager().getAction(ActiveStateName.Resetting);
 		super.executeAction(actionToRun);
 
 		stateMachine.setStateAndRunAction(new IdleState());

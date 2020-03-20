@@ -2,6 +2,7 @@ package states.impl;
 
 import statemachine.StateMachine;
 import states.AbortableState;
+import states.ActiveStateName;
 import states.IStateAction;
 
 /**
@@ -48,7 +49,7 @@ public class StoppingState extends AbortableState {
 
 	@Override
 	public void executeActionAndComplete(StateMachine stateMachine) {
-		IStateAction actionToRun = stateMachine.getStateActionManager().getActionInStopping();
+		IStateAction actionToRun = stateMachine.getStateActionManager().getAction(ActiveStateName.Stopping);
 		super.executeAction(actionToRun);
 
 		stateMachine.setStateAndRunAction(new StoppedState());

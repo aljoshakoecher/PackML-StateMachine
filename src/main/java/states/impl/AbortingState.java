@@ -1,6 +1,7 @@
 package states.impl;
 
 import statemachine.StateMachine;
+import states.ActiveStateName;
 import states.IStateAction;
 import states.State;
 
@@ -57,7 +58,7 @@ public class AbortingState extends State {
 
 	@Override
 	public void executeActionAndComplete(StateMachine stateMachine) {
-		IStateAction actionToRun = stateMachine.getStateActionManager().getActionInAborting();
+		IStateAction actionToRun = stateMachine.getStateActionManager().getAction(ActiveStateName.Aborting);
 		super.executeAction(actionToRun);
 
 		stateMachine.setStateAndRunAction(new AbortedState());
