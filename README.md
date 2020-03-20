@@ -146,7 +146,7 @@ Releases can be found on the Maven Central repository. Just add this dependency 
 <dependency>
 	<groupId>com.github.aljoshakoecher</groupId>
 	<artifactId>isa88-state-machine</artifactId>
-	<version>1.0.0</version>
+	<version>1.1.0</version>
 </dependency>
 ```
 
