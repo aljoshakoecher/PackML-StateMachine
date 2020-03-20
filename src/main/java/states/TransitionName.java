@@ -1,6 +1,6 @@
 package states;
 
-public enum Transition {
+public enum TransitionName {
 
 	start,
 	hold,
