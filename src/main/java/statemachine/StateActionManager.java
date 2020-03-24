@@ -53,26 +53,37 @@ public class StateActionManager {
 		switch (stateName) {
 		case Starting:
 			this.actionInStarting = action;
+			break;
 		case Execute:
 			this.actionInExecute = action;
+			break;
 		case Completing:
 			this.actionInCompleting = action;
+			break;
 		case Holding:
 			this.actionInHolding = action;
+			break;
 		case Unholding:
 			this.actionInUnholding = action;
+			break;
 		case Suspending:
 			this.actionInSuspending = action;
+			break;
 		case Unsuspending:
 			this.actionInUnsuspending = action;
+			break;
 		case Stopping:
 			this.actionInStopping = action;
+			break;
 		case Clearing:
 			this.actionInClearing = action;
+			break;
 		case Aborting:
 			this.actionInAborting = action;
+			break;
 		case Resetting:
 			this.actionInResetting = action;
+			break;
 		default:
 			break;
 		}
