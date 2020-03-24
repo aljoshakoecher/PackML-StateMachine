@@ -39,29 +39,41 @@ public class StateMachineBuilder {
 		switch (stateName) {
 		case Starting:
 			this.stateMachine.getStateActionManager().setAction(action, ActiveStateName.Starting);
+			break;
 		case Execute:
 			this.stateMachine.getStateActionManager().setAction(action, ActiveStateName.Execute);
+			break;
 		case Completing:
 			this.stateMachine.getStateActionManager().setAction(action, ActiveStateName.Completing);
+			break;
 		case Holding:
 			this.stateMachine.getStateActionManager().setAction(action, ActiveStateName.Holding);
+			break;
 		case Unholding:
 			this.stateMachine.getStateActionManager().setAction(action, ActiveStateName.Unholding);
+			break;
 		case Suspending:
 			this.stateMachine.getStateActionManager().setAction(action, ActiveStateName.Suspending);
+			break;
 		case Unsuspending:
 			this.stateMachine.getStateActionManager().setAction(action, ActiveStateName.Unsuspending);
+			break;
 		case Stopping:
 			this.stateMachine.getStateActionManager().setAction(action, ActiveStateName.Stopping);
+			break;
 		case Clearing:
 			this.stateMachine.getStateActionManager().setAction(action, ActiveStateName.Clearing);
+			break;
 		case Aborting:
 			this.stateMachine.getStateActionManager().setAction(action, ActiveStateName.Aborting);
+			break;
 		case Resetting:
 			this.stateMachine.getStateActionManager().setAction(action, ActiveStateName.Resetting);
+			break;
 		default:
-			return this;
+			break;
 		}
+		return this;
 	}
 
 	/**
