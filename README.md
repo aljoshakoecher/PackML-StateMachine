@@ -133,7 +133,19 @@ You can pass in an action and the name of an active state to add this action to 
 
 
 ### Getting notified on state changes
-Work in progress, coming soon
+You can create an observer that is notified whenever the state machine changes its state. To do that, you have to create your observer implementing the IStateChangeOberser interface. This interface's method is called on every state change, you can do whatever you like in this function. Here's an example for such a class:
+
+```java
+class ExampleObserver implements IStateChangeObserver {
+		
+	@Override
+	public void onStateChanged(IState newState) {
+		System.out.println("State has changed, new State is: " + newState.getClass().getSimpleName());
+	}
+};
+```
+
+To add a new observer to the state machine simply call `stateMachine.addStateChangeObserver(IStateChangeObserver observer)` passing in an instance of you observer class. In case an observer should no longer be notified on state changes, simply remove it by calling `stateMachine.removeStateChangeObserver(IStateChangeObserver observer)`.
 
 
 ## Usage
