@@ -1,5 +1,7 @@
 package statemachine;
 
+import java.util.ArrayList;
+
 import states.State;
 import states.TransitionName;
 
@@ -7,6 +9,7 @@ public class StateMachine {
 
 	private State currentState;
 	private StateActionManager stateActionManager = new StateActionManager();
+	private ArrayList<IStateChangeObserver> stateChangeObservers = new ArrayList<>();
 
 	/**
 	 * Instantiates a new {@link StateMachine} with the a given initial state
@@ -16,9 +19,10 @@ public class StateMachine {
 	StateMachine(State initialState) {
 		this.currentState = initialState;
 	}
-	
+
 	/**
 	 * Invokes a transition on the state machine.
+	 * 
 	 * @param transitionName Name of the transition that shall be invoked.
 	 */
 	public void invokeTransition(TransitionName transitionName) {
@@ -105,7 +109,8 @@ public class StateMachine {
 	}
 
 	/**
-	 * Execute an abort command. Can be used to transition from all 'normal' and 'stopping'-states to Aborted. Alias for invokeTransition(TransitionName.abort).
+	 * Execute an abort command. Can be used to transition from all 'normal' and 'stopping'-states to Aborted. Alias for
+	 * invokeTransition(TransitionName.abort).
 	 */
 	public void abort() {
 		this.currentState.abort(this);
@@ -144,6 +149,10 @@ public class StateMachine {
 	public void setStateAndRunAction(State state) {
 		this.currentState = state;
 
+		for (IStateChangeObserver observer : stateChangeObservers) {
+			observer.onStateChanged(state);
+		}
+
 		new Thread(() -> {
 			state.executeActionAndComplete(this);
 		}).start();
@@ -156,6 +165,24 @@ public class StateMachine {
 	 */
 	public StateActionManager getStateActionManager() {
 		return this.stateActionManager;
+	}
+
+	/**
+	 * Adds a new {@link IStateChangeObserver} instance to the list of observers.
+	 * 
+	 * @param observer The new observer to add.
+	 */
+	public void addStateChangeObserver(IStateChangeObserver observer) {
+		this.stateChangeObservers.add(observer);
+	}
+
+	/**
+	 * Removes a given {@link IStateChangeObserver} instance from the list of observers.
+	 * 
+	 * @param observer The observer that is going to be removed.
+	 */
+	public void removeStateChangeObserver(IStateChangeObserver observer) {
+		this.stateChangeObservers.remove(observer);
 	}
 
 }
