@@ -2,7 +2,6 @@ package observer;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
@@ -15,7 +14,6 @@ import statemachine.StateMachine;
 import statemachine.StateMachineBuilder;
 import states.IState;
 import states.IStateAction;
-import states.impl.IdleState;
 
 @TestMethodOrder(OrderAnnotation.class)
 class TestObserving {
@@ -24,7 +22,6 @@ class TestObserving {
 		public String observedStateName;
 		@Override
 		public void onStateChanged(IState newState) {
-			System.out.println("State has changed, new State is: " + newState.getClass().getSimpleName());
 			observedStateName = newState.getClass().getSimpleName();
 		}
 	};
