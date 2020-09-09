@@ -150,11 +150,11 @@ public class Isa88StateMachine {
 		this.currentState = state;
 
 		for (IStateChangeObserver observer : stateChangeObservers) {
-			observer.onStateChanged(state);
+			observer.onStateChanged(this.currentState);
 		}
 
 		new Thread(() -> {
-			state.executeActionAndComplete(this);
+			this.currentState.executeActionAndComplete(this);
 		}).start();
 	}
 
