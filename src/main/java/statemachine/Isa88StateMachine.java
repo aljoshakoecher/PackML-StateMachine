@@ -25,7 +25,7 @@ public class Isa88StateMachine {
 	 * 
 	 * @param transitionName Name of the transition that shall be invoked.
 	 */
-	public void invokeTransition(TransitionName transitionName) {
+	public synchronized void invokeTransition(TransitionName transitionName) {
 		switch (transitionName) {
 		case start:
 			this.currentState.start(this);
@@ -62,49 +62,49 @@ public class Isa88StateMachine {
 	/**
 	 * Execute a start command. Can be used to transition from Idle to Execute. Alias for invokeTransition(TransitionName.start).
 	 */
-	public void start() {
+	public synchronized void start() {
 		this.currentState.start(this);
 	}
 
 	/**
 	 * Execute a hold command. Can be used to transition from Execute to Held. Alias for invokeTransition(TransitionName.hold).
 	 */
-	public void hold() {
+	public synchronized void hold() {
 		this.currentState.hold(this);
 	}
 
 	/**
 	 * Execute an unhold command. Can be used to transition from Held back to Execute. Alias for invokeTransition(TransitionName.unhold).
 	 */
-	public void unhold() {
+	public synchronized void unhold() {
 		this.currentState.unhold(this);
 	}
 
 	/**
 	 * Execute a suspend command. Can be used to transition Execute to Suspend. Alias for invokeTransition(TransitionName.suspend).
 	 */
-	public void suspend() {
+	public synchronized void suspend() {
 		this.currentState.suspend(this);
 	}
 
 	/**
 	 * Execute an unsuspend command. Can be used to transition from Suspended back to Execute. Alias for invokeTransition(TransitionName.unsuspend).
 	 */
-	public void unsuspend() {
+	public synchronized void unsuspend() {
 		this.currentState.unsuspend(this);
 	}
 
 	/**
 	 * Execute a reset command. Can be used to transition from Complete or Stopped back to Idle. Alias for invokeTransition(TransitionName.reset).
 	 */
-	public void reset() {
+	public synchronized void reset() {
 		this.currentState.reset(this);
 	}
 
 	/**
 	 * Execute a stop command. Can be used to transition from all 'normal' states to Stopped. Alias for invokeTransition(TransitionName.stop).
 	 */
-	public void stop() {
+	public synchronized void stop() {
 		this.currentState.stop(this);
 	}
 
@@ -112,14 +112,14 @@ public class Isa88StateMachine {
 	 * Execute an abort command. Can be used to transition from all 'normal' and 'stopping'-states to Aborted. Alias for
 	 * invokeTransition(TransitionName.abort).
 	 */
-	public void abort() {
+	public synchronized void abort() {
 		this.currentState.abort(this);
 	}
 
 	/**
 	 * Execute a clear command. Can be used to transition from Aborted to Stopped. Alias for invokeTransition(TransitionName.clear).
 	 */
-	public void clear() {
+	public synchronized void clear() {
 		this.currentState.clear(this);
 	}
 
@@ -128,7 +128,7 @@ public class Isa88StateMachine {
 	 * 
 	 * @return The current state instance
 	 */
-	public State getState() {
+	public synchronized State getState() {
 		return this.currentState;
 	}
 
