@@ -1,6 +1,6 @@
 package states;
 
-import statemachine.StateMachine;
+import statemachine.Isa88StateMachine;
 import states.impl.AbortingState;
 
 /**
@@ -9,11 +9,11 @@ import states.impl.AbortingState;
 public abstract class AbortableState extends State {
 
 	@Override
-	public void abort(StateMachine stateMachine) {
+	public void abort(Isa88StateMachine stateMachine) {
 		stateMachine.setStateAndRunAction(new AbortingState());
 	}
 
 	@Override
-	public void stop(StateMachine stateMachine) {
+	public void stop(Isa88StateMachine stateMachine) {
 	}
 }

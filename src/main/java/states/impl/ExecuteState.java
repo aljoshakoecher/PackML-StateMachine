@@ -1,6 +1,6 @@
 package states.impl;
 
-import statemachine.StateMachine;
+import statemachine.Isa88StateMachine;
 import states.ActiveStateName;
 import states.IStateAction;
 import states.StoppableState;
@@ -12,42 +12,42 @@ import states.StoppableState;
 public class ExecuteState extends StoppableState {
 
 	@Override
-	public void start(StateMachine stateMachine) {
+	public void start(Isa88StateMachine stateMachine) {
 		// Start cannot be fired from Execute -> Do nothing except maybe giving a warning
 	}
 
 	@Override
-	public void hold(StateMachine stateMachine) {
+	public void hold(Isa88StateMachine stateMachine) {
 		stateMachine.setStateAndRunAction(new HoldingState());
 	}
 
 	@Override
-	public void unhold(StateMachine stateMachine) {
+	public void unhold(Isa88StateMachine stateMachine) {
 		// Unhold cannot be fired from Execute -> Do nothing except maybe giving a warning
 	}
 
 	@Override
-	public void suspend(StateMachine stateMachine) {
+	public void suspend(Isa88StateMachine stateMachine) {
 		stateMachine.setStateAndRunAction(new SuspendingState());
 	}
 
 	@Override
-	public void unsuspend(StateMachine stateMachine) {
+	public void unsuspend(Isa88StateMachine stateMachine) {
 		// Unsuspend cannot be fired from Execute -> Do nothing except maybe giving a warning
 	}
 
 	@Override
-	public void reset(StateMachine stateMachine) {
+	public void reset(Isa88StateMachine stateMachine) {
 		// Reset cannot be fired from Execute -> Do nothing except maybe giving a warning
 	}
 
 	@Override
-	public void clear(StateMachine stateMachine) {
+	public void clear(Isa88StateMachine stateMachine) {
 		// Clear cannot be fired from Execute -> Do nothing except maybe giving a warning
 	}
 
 	@Override
-	public void executeActionAndComplete(StateMachine stateMachine) {
+	public void executeActionAndComplete(Isa88StateMachine stateMachine) {
 		IStateAction actionToRun = stateMachine.getStateActionManager().getAction(ActiveStateName.Execute);
 		super.executeAction(actionToRun);
 

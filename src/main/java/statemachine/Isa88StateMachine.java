@@ -5,18 +5,18 @@ import java.util.ArrayList;
 import states.State;
 import states.TransitionName;
 
-public class StateMachine {
+public class Isa88StateMachine {
 
 	private State currentState;
 	private StateActionManager stateActionManager = new StateActionManager();
 	private ArrayList<IStateChangeObserver> stateChangeObservers = new ArrayList<>();
 
 	/**
-	 * Instantiates a new {@link StateMachine} with the a given initial state
+	 * Instantiates a new {@link Isa88StateMachine} with the a given initial state
 	 * 
 	 * @param initialState State that the state machine is in upon starting
 	 */
-	StateMachine(State initialState) {
+	Isa88StateMachine(State initialState) {
 		this.currentState = initialState;
 	}
 
@@ -137,7 +137,7 @@ public class StateMachine {
 	 * 
 	 * @param state The new state that will be set as the current state
 	 */
-	protected void setState(State state) {
+	protected synchronized void setState(State state) {
 		this.currentState = state;
 	}
 
@@ -146,7 +146,7 @@ public class StateMachine {
 	 * 
 	 * @param state The new state that will be set as the current state
 	 */
-	public void setStateAndRunAction(State state) {
+	public synchronized void setStateAndRunAction(State state) {
 		this.currentState = state;
 
 		for (IStateChangeObserver observer : stateChangeObservers) {
