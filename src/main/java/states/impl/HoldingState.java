@@ -51,9 +51,11 @@ public class HoldingState extends StoppableState {
 	public void executeActionAndComplete(Isa88StateMachine stateMachine) {
 		IStateAction actionToRun = stateMachine.getStateActionManager().getAction(ActiveStateName.Holding);
 		super.executeAction(actionToRun);
-
-		State nextState = new HeldState();
-		stateMachine.setStateAndRunAction(nextState);
+		
+		// Make sure the current state is still Holding before going to Held (could have been changed in the mean time).
+		if (stateMachine.getState() instanceof HoldingState) {
+			stateMachine.setStateAndRunAction(new HeldState());
+		}
 	}
 
 }

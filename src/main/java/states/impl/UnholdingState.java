@@ -51,7 +51,10 @@ public class UnholdingState extends StoppableState {
 		IStateAction actionToRun = stateMachine.getStateActionManager().getAction(ActiveStateName.Unholding);
 		super.executeAction(actionToRun);
 
-		stateMachine.setStateAndRunAction(new ExecuteState());
+		// Make sure the current state is still Unholding before going to Execute (could have been changed in the mean time).
+		if (stateMachine.getState() instanceof UnholdingState) {
+			stateMachine.setStateAndRunAction(new ExecuteState());
+		}
 	}
 
 }

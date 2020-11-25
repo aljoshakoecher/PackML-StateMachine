@@ -51,7 +51,10 @@ public class UnsuspendingState extends StoppableState {
 		IStateAction actionToRun = stateMachine.getStateActionManager().getAction(ActiveStateName.Unsuspending);
 		super.executeAction(actionToRun);
 
-		stateMachine.setStateAndRunAction(new ExecuteState());
+		// Make sure the current state is still Unsuspending before going to Execute (could have been changed in the mean time).
+		if (stateMachine.getState() instanceof UnsuspendingState) {
+			stateMachine.setStateAndRunAction(new ExecuteState());
+		}
 	}
 
 }

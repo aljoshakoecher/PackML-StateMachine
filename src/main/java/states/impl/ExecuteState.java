@@ -51,7 +51,7 @@ public class ExecuteState extends StoppableState {
 		IStateAction actionToRun = stateMachine.getStateActionManager().getAction(ActiveStateName.Execute);
 		super.executeAction(actionToRun);
 		
-		// TODO: Make this nicer, e.g. by executing a "stateComplete" on the current state
+		// Make sure the current state is still Execute before going to Completing (could have been changed in the mean time).
 		if (stateMachine.getState() instanceof ExecuteState) {
 			stateMachine.setStateAndRunAction(new CompletingState());
 		}

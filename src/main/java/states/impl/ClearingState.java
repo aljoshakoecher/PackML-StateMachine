@@ -56,7 +56,10 @@ public class ClearingState extends AbortableState {
 		IStateAction actionToRun = stateMachine.getStateActionManager().getAction(ActiveStateName.Clearing);
 		super.executeAction(actionToRun);
 
-		stateMachine.setStateAndRunAction(new StoppedState());
+		// Make sure the current state is still Clearing before going to Stopped (could have been changed in the mean time).
+		if (stateMachine.getState() instanceof ClearingState) {
+			stateMachine.setStateAndRunAction(new StoppedState());
+		}
 	}
 
 }

@@ -52,7 +52,10 @@ public class StoppingState extends AbortableState {
 		IStateAction actionToRun = stateMachine.getStateActionManager().getAction(ActiveStateName.Stopping);
 		super.executeAction(actionToRun);
 
-		stateMachine.setStateAndRunAction(new StoppedState());
+		// Make sure the current state is still Stopping before going to Stopped (could have been changed in the mean time).
+		if (stateMachine.getState() instanceof StoppingState) {
+			stateMachine.setStateAndRunAction(new StoppedState());
+		}
 	}
 
 }

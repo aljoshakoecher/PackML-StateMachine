@@ -10,6 +10,7 @@ public abstract class State implements IState {
 	 */
 	public void executeActionAndComplete(Isa88StateMachine stateMachine) {
 		// Default implementation: Do nothing
+		// Acting states have to override this method in order to automatically complete
 	}
 	
 	/**

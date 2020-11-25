@@ -50,8 +50,11 @@ public class StartingState extends StoppableState {
 	public void executeActionAndComplete(Isa88StateMachine stateMachine) {
 		IStateAction actionToRun = stateMachine.getStateActionManager().getAction(ActiveStateName.Starting);
 		super.executeAction(actionToRun);
-
-		stateMachine.setStateAndRunAction(new ExecuteState());
+		
+		// Make sure the current state is still Starting before going to Execute (could have been changed in the mean time).
+		if (stateMachine.getState() instanceof StartingState) {
+			stateMachine.setStateAndRunAction(new ExecuteState());
+		}
 	}
 
 }

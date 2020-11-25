@@ -6,8 +6,8 @@ import states.IStateAction;
 import states.State;
 
 /**
- * The {@link AbortingState} denotes a transitive state that should bring a machine to a sudden halt. Damages on products have to be expected. From Aborting, no
- * commands are accepted. After executing its action, the state machine will change to the {@link AbortedState}.
+ * The {@link AbortingState} denotes a transitive state that should bring a machine to a sudden halt. Damages on products have to be expected. From
+ * Aborting, no commands are accepted. After executing its action, the state machine will change to the {@link AbortedState}.
  */
 public class AbortingState extends State {
 
@@ -61,7 +61,10 @@ public class AbortingState extends State {
 		IStateAction actionToRun = stateMachine.getStateActionManager().getAction(ActiveStateName.Aborting);
 		super.executeAction(actionToRun);
 
-		stateMachine.setStateAndRunAction(new AbortedState());
+		// Make sure the current state is still Aborting before going to Aborted (could have been changed in the mean time).
+		if (stateMachine.getState() instanceof AbortingState) {
+			stateMachine.setStateAndRunAction(new AbortedState());
+		}
 	}
 
 }

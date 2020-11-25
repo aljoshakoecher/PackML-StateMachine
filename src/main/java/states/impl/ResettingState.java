@@ -51,7 +51,10 @@ public class ResettingState extends StoppableState {
 		IStateAction actionToRun = stateMachine.getStateActionManager().getAction(ActiveStateName.Resetting);
 		super.executeAction(actionToRun);
 
-		stateMachine.setStateAndRunAction(new IdleState());
+		// Make sure the current state is still Resetting before going to Idle (could have been changed in the mean time).
+		if (stateMachine.getState() instanceof ResettingState) {
+			stateMachine.setStateAndRunAction(new IdleState());
+		}
 	}
 
 }

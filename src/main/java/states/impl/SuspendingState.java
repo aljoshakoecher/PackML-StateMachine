@@ -52,7 +52,10 @@ public class SuspendingState extends StoppableState {
 		IStateAction actionToRun = stateMachine.getStateActionManager().getAction(ActiveStateName.Suspending);
 		super.executeAction(actionToRun);
 
-		stateMachine.setStateAndRunAction(new SuspendedState());
+		// Make sure the current state is still execute before going to Completing (could have been changed in the mean time).
+		if (stateMachine.getState() instanceof SuspendingState) {
+			stateMachine.setStateAndRunAction(new SuspendedState());
+		}
 	}
 
 }

@@ -51,7 +51,10 @@ public class CompletingState extends StoppableState {
 		IStateAction actionToRun = stateMachine.getStateActionManager().getAction(ActiveStateName.Completing);
 		super.executeAction(actionToRun);
 
-		stateMachine.setStateAndRunAction(new CompleteState());
+		// Make sure the current state is still Completing before going to Complete (could have been changed in the mean time).
+		if (stateMachine.getState() instanceof CompletingState) {
+			stateMachine.setStateAndRunAction(new CompleteState());
+		}
 	}
 
 }
