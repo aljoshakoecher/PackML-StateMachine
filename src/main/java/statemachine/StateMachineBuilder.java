@@ -6,14 +6,14 @@ import states.State;
 import states.impl.*;
 
 /**
- * Builder class that is in charge of constructing a properly set up {@link StateMachine}
+ * Builder class that is in charge of constructing a properly set up {@link Isa88StateMachine}
  */
 public class StateMachineBuilder {
 
-	private StateMachine stateMachine;
+	private Isa88StateMachine stateMachine;
 
 	public StateMachineBuilder() {
-		this.stateMachine = new StateMachine(new IdleState());
+		this.stateMachine = new Isa88StateMachine(new IdleState());
 	}
 
 	/**
@@ -198,11 +198,11 @@ public class StateMachineBuilder {
 	}
 
 	/**
-	 * Finishes building the {@link StateMachine} and returns a fresh instance with the given attributes
+	 * Finishes building the {@link Isa88StateMachine} and returns a fresh instance with the given attributes
 	 * 
-	 * @return Fresh instance of {@link StateMachine}
+	 * @return Fresh instance of {@link Isa88StateMachine}
 	 */
-	public StateMachine build() {
+	public Isa88StateMachine build() {
 		return this.stateMachine;
 	}
 }

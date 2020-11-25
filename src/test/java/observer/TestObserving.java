@@ -10,7 +10,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 
 import statemachine.IStateChangeObserver;
-import statemachine.StateMachine;
+import statemachine.Isa88StateMachine;
 import statemachine.StateMachineBuilder;
 import states.IState;
 import states.IStateAction;
@@ -28,7 +28,7 @@ class TestObserving {
 	
 	private final static int dummyActionTime = 300;
 	private static IStateAction dummyAction;
-	private static StateMachine stateMachine;
+	private static Isa88StateMachine stateMachine;
 	private static ExampleObserver firstObserver;
 	private static ExampleObserver secondObserver;
 

@@ -1,6 +1,6 @@
 package states;
 
-import statemachine.StateMachine;
+import statemachine.Isa88StateMachine;
 
 public abstract class State implements IState {
 
@@ -8,8 +8,9 @@ public abstract class State implements IState {
 	 * Execute an action, complete this state and transition to the next state 
 	 * @param stateMachine The current state machine instance
 	 */
-	public void executeActionAndComplete(StateMachine stateMachine) {
+	public void executeActionAndComplete(Isa88StateMachine stateMachine) {
 		// Default implementation: Do nothing
+		// Acting states have to override this method in order to automatically complete
 	}
 	
 	/**

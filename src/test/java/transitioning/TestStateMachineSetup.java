@@ -7,7 +7,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
-import statemachine.StateMachine;
+import statemachine.Isa88StateMachine;
 import statemachine.StateMachineBuilder;
 import states.ActiveStateName;
 import states.IStateAction;
@@ -30,7 +30,7 @@ public class TestStateMachineSetup {
 	@ParameterizedTest
 	@EnumSource(ActiveStateName.class)
 	void testActionSetup(ActiveStateName stateName) {
-		StateMachine stateMachine = new StateMachineBuilder().withAction(dummyAction, stateName).build();
+		Isa88StateMachine stateMachine = new StateMachineBuilder().withAction(dummyAction, stateName).build();
 		IStateAction action = stateMachine.getStateActionManager().getAction(stateName);
 		assertEquals(action, dummyAction, "dummyAction should be added to state action");
 	}
