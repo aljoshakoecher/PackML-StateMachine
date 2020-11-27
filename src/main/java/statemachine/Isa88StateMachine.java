@@ -1,6 +1,10 @@
 package statemachine;
 
 import java.util.ArrayList;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import states.State;
 import states.TransitionName;
@@ -10,7 +14,9 @@ public class Isa88StateMachine {
 	private State currentState;
 	private StateActionManager stateActionManager = new StateActionManager();
 	private ArrayList<IStateChangeObserver> stateChangeObservers = new ArrayList<>();
-
+	private ExecutorService actionExecutor = Executors.newSingleThreadExecutor();
+	private Future<?> runningTaskFuture; 
+	
 	/**
 	 * Instantiates a new {@link Isa88StateMachine} with the a given initial state
 	 * 
@@ -152,10 +158,14 @@ public class Isa88StateMachine {
 		for (IStateChangeObserver observer : stateChangeObservers) {
 			observer.onStateChanged(this.currentState);
 		}
-
-		new Thread(() -> {
+		
+		if(runningTaskFuture != null) {
+			runningTaskFuture.cancel(true);
+		}
+		
+		this.runningTaskFuture = actionExecutor.submit(() -> {
 			this.currentState.executeActionAndComplete(this);
-		}).start();
+		});
 	}
 
 	/**
