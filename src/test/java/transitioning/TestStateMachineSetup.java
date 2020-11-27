@@ -2,8 +2,6 @@ package transitioning;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
@@ -13,19 +11,8 @@ import states.ActiveStateName;
 import states.IStateAction;
 public class TestStateMachineSetup {
 
-	static IStateAction dummyAction;
-
-	@BeforeAll
-	static void setUp() {
-		dummyAction = new IStateAction() {
-			@Override
-			public void execute() {
-				// simply do nothing here
-			}
-		};
-
-	}
-
+	int dummyActionTime = 500;
+	IStateAction dummyAction = new DummyAction(dummyActionTime);
 	
 	@ParameterizedTest
 	@EnumSource(ActiveStateName.class)

@@ -2,7 +2,6 @@ package transitioning;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
@@ -18,23 +17,7 @@ import states.impl.*;
 class TestTransitioningWithDummyActions {
 
 	private final static int dummyActionTime = 300;
-	private static IStateAction dummyAction;
-
-	@BeforeAll
-	static void setUp() {
-		// Create a dummy action that just pauses the thread
-		dummyAction = new IStateAction() {
-			@Override
-			public void execute() {
-				try {
-					Thread.sleep(dummyActionTime);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
-		};
-
-	}
+	private IStateAction dummyAction = new DummyAction(dummyActionTime);
 
 	@Test
 	@Order(1)
@@ -145,7 +128,7 @@ class TestTransitioningWithDummyActions {
 		waitForDummyActionToBeCompleted(1); // Wait for starting to be complete
 		stateMachine.suspend();
 		assertTrue(stateMachine.getState() instanceof SuspendingState,
-				"Machine should switch to SuspendingState when suspend is fired in ExecuteState");
+				"Machine should switch to SuspendingState when suspend is fired in ExecuteState. State is: " + stateMachine.getState());
 	}
 
 	@Test
