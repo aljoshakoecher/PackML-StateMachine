@@ -3,7 +3,6 @@ package states.impl;
 import statemachine.Isa88StateMachine;
 import states.ActiveStateName;
 import states.IStateAction;
-import states.State;
 import states.StoppableState;
 
 /**
