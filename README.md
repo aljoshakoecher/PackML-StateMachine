@@ -1,9 +1,9 @@
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.aljoshakoecher/isa88-state-machine.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.aljoshakoecher%22%20AND%20a:%22isa88-state-machine%22)
 
-# Java ISA88-StateMachine
-A Java implementation of the state machine standardized in ISA 88. The state machine guarantees that only 'valid' transitions can be executed. Have a look at the following figure which depicts the state machine of ISA 88:
+# Java PackML-StateMachine
+A Java implementation of the state machine standardized in PackML. The state machine guarantees that only 'valid' transitions can be executed. Have a look at the following figure which depicts the state machine of PackML:
 
-![State machine as defined in ISA 88 (figure taken from http://omac.org/wp-content/uploads/2016/11/PackML_Unit_Machine_Implementation_Guide-V1-00.pdf](https://github.com/aljoshakoecher/ISA88-StateMachine/blob/documentation/images/documentation/isa88-state-machine.png?raw=true)
+![State machine as defined in PackML (figure taken from http://omac.org/wp-content/uploads/2016/11/PackML_Unit_Machine_Implementation_Guide-V1-00.pdf](https://github.com/aljoshakoecher/ISA88-StateMachine/blob/documentation/images/documentation/isa88-state-machine.png?raw=true)
 
 As you can see in the figure, the state machine defines states and transitions that can be fired on certain states. Here are some examples:
 * A 'start'-transition only brings the state machine to the 'Starting' state when it is currently in 'Idle' state
@@ -178,4 +178,4 @@ This project is built with Maven. You can simply build this library from source 
 `mvn clean install` from the project root.
 
 ## Disclaimer
-Please note that the figure above and all definitions of states and transitions have been taken from the [OMAC PackML Implementation Guide](http://omac.org/wp-content/uploads/2016/11/PackML_Unit_Machine_Implementation_Guide-V1-00.pdf) for ISA 88. 
+Please note that the figure above and all definitions of states and transitions have been taken from the [OMAC PackML Implementation Guide](http://omac.org/wp-content/uploads/2016/11/PackML_Unit_Machine_Implementation_Guide-V1-00.pdf) for PackML. 
